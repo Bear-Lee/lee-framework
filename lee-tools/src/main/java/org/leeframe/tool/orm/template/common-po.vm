@@ -1,0 +1,61 @@
+package $outputor.packageNamePo;
+
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+*$!{outputor.comment}
+*/
+##@Entity
+##@Table(name = "${outputor.tableName}", uniqueConstraints = { @UniqueConstraint(columnNames = { "${outputor.pkColumnNames}" }) })
+##public class ${outputor.className} extends ${outputor.basePoName} implements Serializable {
+public class ${outputor.className} implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+##定义field 
+	#foreach($column in $outputor.columns)
+private ${column.dataType} ${column.fieldName};//$!column.comment
+	#end
+
+##无参数构造函数
+	public ${outputor.className}() {
+	}
+
+	##主键参数构造函数
+/**
+	*
+	#foreach($column in $outputor.columnPKs)
+*@param ${column.fieldName} -- $!{column.comment}
+	#end
+*/
+	public ${outputor.className}($outputor.pkParams) {
+		#foreach($column in $outputor.columnPKs)
+this.${column.fieldName} = ${column.fieldName};
+	#end
+}
+
+
+	##gettor settor
+	#foreach($column in $outputor.columns)
+
+	/**
+	 *
+	 #if("$!column.comment"!="")
+*$column.comment
+	 #end
+*/
+	public $column.dataType get${column.fieldNameFirstCharUpcase}() {
+		return ${column.fieldName};
+	}
+
+	/**
+	 *
+	 #if("$!column.comment"!="")
+*$column.comment
+	 #end
+*/
+	public void set${column.fieldNameFirstCharUpcase}(${column.dataType} ${column.fieldName}) {
+		this.${column.fieldName} = ${column.fieldName};
+	}
+#end
+}
