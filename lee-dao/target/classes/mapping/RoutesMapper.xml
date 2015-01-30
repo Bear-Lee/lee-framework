@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.leeframe.dao.RoutesMapper" >
+  <resultMap id="BaseResultMap" type="org.leeframe.model.Routes" >
+    <id column="RouteName" property="routename" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="org.leeframe.model.Routes" extends="BaseResultMap" >
+    <result column="Content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    RouteName
+  </sql>
+  <sql id="Blob_Column_List" >
+    Content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from routes
+    where RouteName = #{routename,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from routes
+    where RouteName = #{routename,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="org.leeframe.model.Routes" >
+    insert into routes (RouteName, Content)
+    values (#{routename,jdbcType=CHAR}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.leeframe.model.Routes" >
+    insert into routes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="routename != null" >
+        RouteName,
+      </if>
+      <if test="content != null" >
+        Content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="routename != null" >
+        #{routename,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.leeframe.model.Routes" >
+    update routes
+    <set >
+      <if test="content != null" >
+        Content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where RouteName = #{routename,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="org.leeframe.model.Routes" >
+    update routes
+    set Content = #{content,jdbcType=LONGVARCHAR}
+    where RouteName = #{routename,jdbcType=CHAR}
+  </update>
+</mapper>
