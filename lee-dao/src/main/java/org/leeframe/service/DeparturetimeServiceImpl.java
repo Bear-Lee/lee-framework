@@ -11,7 +11,6 @@ public class DeparturetimeServiceImpl implements DeparturetimeService {
 	@Resource
 	private DeparturetimeMapper departuretimeMapper;
 
-	@Override
 	public Departuretime getDepart(Integer id) {
 		return departuretimeMapper.selectByPrimaryKey(id);
 	}

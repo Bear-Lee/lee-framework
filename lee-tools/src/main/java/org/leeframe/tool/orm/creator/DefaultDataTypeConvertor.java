@@ -9,7 +9,6 @@ package org.leeframe.tool.orm.creator;
  */
 public class DefaultDataTypeConvertor implements DataTypeConvertor {
 
-	@Override
 	public String convertDBDataTypeToJavaDataType(String dbDataType,
 			String dbDataScale, boolean isPk) {
 		String javaDataType = null;

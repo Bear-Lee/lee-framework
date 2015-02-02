@@ -101,7 +101,7 @@
 	<modules>
 		<module>lee-tools</module>
 		<module>lee-core</module>
-		<module>lee-web</module>
 		<module>lee-dao</module>
+		<module>lee-web</module>
 	</modules>
 </project>
