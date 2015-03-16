@@ -112,7 +112,21 @@
 			<artifactId>servlet-api</artifactId>
 			<version>3.0-alpha-1</version>
 		</dependency>
-
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.caucho</groupId>
+			<artifactId>hessian</artifactId>
+			<version>3.1.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>16.0.1</version>
+		</dependency>
 	</dependencies>
 	<modules>
 		<module>lee-tools</module>

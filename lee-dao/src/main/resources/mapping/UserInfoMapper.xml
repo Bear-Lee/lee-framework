@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.leeframe.dao.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="org.leeframe.model.UserInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userMobile" property="usermobile" jdbcType="VARCHAR" />
+    <result column="userAge" property="userage" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userMobile, userAge
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from userInfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userInfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.leeframe.model.UserInfo" >
+    insert into userInfo (id, userMobile, userAge
+      )
+    values (#{id,jdbcType=INTEGER}, #{usermobile,jdbcType=VARCHAR}, #{userage,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.leeframe.model.UserInfo" >
+    insert into userInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="usermobile != null" >
+        userMobile,
+      </if>
+      <if test="userage != null" >
+        userAge,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="usermobile != null" >
+        #{usermobile,jdbcType=VARCHAR},
+      </if>
+      <if test="userage != null" >
+        #{userage,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.leeframe.model.UserInfo" >
+    update userInfo
+    <set >
+      <if test="usermobile != null" >
+        userMobile = #{usermobile,jdbcType=VARCHAR},
+      </if>
+      <if test="userage != null" >
+        userAge = #{userage,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.leeframe.model.UserInfo" >
+    update userInfo
+    set userMobile = #{usermobile,jdbcType=VARCHAR},
+      userAge = #{userage,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
