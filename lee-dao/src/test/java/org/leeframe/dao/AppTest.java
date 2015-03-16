@@ -1,5 +1,8 @@
 package org.leeframe.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.leeframe.model.UserInfo;
@@ -33,6 +36,24 @@ public class AppTest {
 	@Test
 	public void testUserInfo(){
 	    UserInfo info=userInfoService.getById(1);
-	    System.out.println(info.getUsermobile());
+	    
+	    List<UserInfo> list=new ArrayList<UserInfo>();
+	    UserInfo u1=new UserInfo();
+	    u1.setId(1);
+	    u1.setUserage(23);
+	    u1.setUsermobile("电话1");
+	    
+	    UserInfo u2=new UserInfo();
+	    u2.setId(2);
+	    u2.setUserage(18);
+	    u2.setUsermobile("电话2");
+	    
+	    list.add(u1);
+	    list.add(u2);
+	    
+	    int i=userInfoService.updateBatch(list);
+	    System.out.println("操作了"+i+"行数据");
+	    
+//	    System.out.println(info.getUsermobile());
 	}
 }

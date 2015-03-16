@@ -68,4 +68,22 @@
       userAge = #{userage,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <update id="updateBatch">
+  	update userInfo
+  	<trim prefix="set" suffixOverrides=",">
+  		<trim prefix="userage = case" suffix="end,">
+  			<foreach collection="list" item="i" index="index">
+  				<if test="i.userage!=null">
+  					when (id = #{i.id}) then #{i.userage}
+  				</if>
+  			</foreach>
+  		</trim>
+  	</trim>
+  	where 
+  	<foreach collection="list" separator="or" item="i" index="index">
+  		(id= #{i.id})
+  	</foreach>
+  </update>
+  
 </mapper>

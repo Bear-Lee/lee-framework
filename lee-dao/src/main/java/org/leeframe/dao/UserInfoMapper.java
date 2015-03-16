@@ -1,5 +1,7 @@
 package org.leeframe.dao;
 
+import java.util.List;
+
 import org.leeframe.model.UserInfo;
 
 public interface UserInfoMapper {
@@ -14,4 +16,6 @@ public interface UserInfoMapper {
     int updateByPrimaryKeySelective(UserInfo record);
 
     int updateByPrimaryKey(UserInfo record);
+    
+    int updateBatch(List<UserInfo> list);
 }
