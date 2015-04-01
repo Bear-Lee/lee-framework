@@ -41,6 +41,11 @@
 			<version>3.2.0.RELEASE</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>3.2.0.RELEASE</version>
+		</dependency>
+		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 			<version>3.1.1</version>
@@ -126,6 +131,16 @@
 			<artifactId>guava</artifactId>
 			<version>16.0.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>1.8.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>16.0.1</version>
+		</dependency>
 	</dependencies>
 	<modules>
 		<module>lee-tools</module>
@@ -133,5 +148,6 @@
 		<module>lee-dao</module>
 		<module>lee-web</module>
     	<module>lee-job</module>
+    <module>lee-engine</module>
   </modules>
 </project>
